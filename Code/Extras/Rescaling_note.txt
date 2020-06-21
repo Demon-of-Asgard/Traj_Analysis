@@ -1,0 +1,44 @@
+Following are the stepts I followed to rescale number density on the x-neutrino surface.
+
+1. Calculate average number of x-neutrinos within the differential area dA_i. 
+
+    (av_nx)_i = [ (nx)_i + (nx)_(i+1) ]/2
+        nx_i  ---> Density of x-neutrino at ith location on the surface.
+            nx_i = \int [ d^3p/(2*PI)^3 ] * f(p, T_i) 
+                T_i ---> Temparature at ith location.
+        (av_nx)_i  ---> Average number density of x-neutrino at ith location on the 
+        surface.
+
+
+    (av_r)_i = [ r_i + r_(i+1) ]/2.
+        r_i  ---> Radial distance from origine to the ith point on the surface     
+
+
+    x0, z0 = x_i, z_i
+    x1, z1 = x_i+1, z_i+1
+
+    av_z = 1/2(z0+z1)
+    theta_i = acos(av_z/av_r)
+
+    dl_i = sqrt((x0-x1)^2 + (z0-z1)^2)
+        dl_i ---> Length of line element.
+
+    dA_i = 2*PI*(av_r)_i *sin(theta_i)*dl_i
+
+    dNx_i = (av_nx) * dA_i
+        dNx_i ---> # x-neutrinos at ith location on the surface.
+
+
+
+    Fx_i = 0.25 * c* dNx_i
+        Fx_i ---> Flux of x-neutrinos at the ith location.
+
+    Lx = Sum( dF_i ) 
+
+2. Calculate the 'scale' factor \xi.
+
+    xi = [Lx_(privided by Ricard) ] / Lx.
+
+3. Rescale the x-beutrino number density on the surface.
+
+    nx_i = xi * nx_i
